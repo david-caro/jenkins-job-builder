@@ -1,6 +1,7 @@
 %define name jenkins-job-builder
-%define version 1.1.1
-%define unmangled_version 1.1.1
+%define version 1.2.0.post49
+%define unmangled_version 1.2.0.post49
+%define unmangled_version 1.2.0.post49
 %define release 1%{?dist}
 
 Summary: Manage Jenkins jobs with YAML
@@ -14,7 +15,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Prefix: %{_prefix}
 BuildArch: noarch
 Vendor: OpenStack Infrastructure Team <openstack-infra@lists.openstack.org>
-Url: https://git.openstack.org/cgit/openstack-infra/jenkins-job-builder
+Url: http://ci.openstack.org/jjb.html
 
 Requires: PyYAML
 Requires: python-six >= 1.5.2
@@ -54,11 +55,10 @@ Patch4: packaging.el7.patch
 Patch5: packaging.el6.patch
 
 %description
-===================
-Jenkins Job Builder
-===================
+README
+======
 
-Jenkins Job Builder takes simple descriptions of Jenkins jobs in YAML format,
+Jenkins Job Builder takes simple descriptions of Jenkins_ jobs in YAML_ format,
 and uses them to configure Jenkins. You can keep your job descriptions in human
 readable text format in a version control system to make changes and auditing
 easier. It also has a flexible template system, so creating many similarly
@@ -73,14 +73,18 @@ Online documentation:
 * http://ci.openstack.org/jenkins-job-builder/
 
 Developers
-==========
+----------
 Bug report:
 
-* https://bugs.launchpad.net/openstack-ci/
+* https://storyboard.openstack.org/#!/project/723
 
-Cloning:
+Repository:
 
-* https://git.openstack.org/openstack-infra/jenkins-job-builder
+* https://git.openstack.org/cgit/openstack-infra/jenkins-job-builder
+
+Cloning::
+
+    git clone https://git.openstack.org/openstack-infra/jenkins-job-builder
 
 Patches are submitted via Gerrit at:
 
@@ -90,10 +94,10 @@ Please do not submit GitHub pull requests, they will be automatically closed.
 
 More details on how you can contribute is available on our wiki at:
 
-* http://wiki.openstack.org/HowToContribute
+* http://docs.openstack.org/infra/manual/developers.html
 
 Writing a patch
-===============
+---------------
 
 We ask that all code submissions be pep8_ and pyflakes_ clean.  The
 easiest way to do that is to run tox_ before submitting code for
@@ -116,7 +120,7 @@ YAML, as well as developers when matching YAML components to Python
 implementation.
 
 Installing without setup.py
-===========================
+---------------------------
 
 For YAML support, you will need libyaml_ installed.
 
@@ -128,6 +132,8 @@ Then install the required python packages using pip_::
 
     $ sudo pip install PyYAML python-jenkins
 
+.. _Jenkins: http://jenkins-ci.org/
+.. _YAML: http://www.yaml.org/
 .. _pep8: https://pypi.python.org/pypi/pep8
 .. _pyflakes: https://pypi.python.org/pypi/pyflakes
 .. _tox: https://testrun.org/tox
