@@ -1,7 +1,6 @@
 %define name jenkins-job-builder
-%define version 1.2.1.dev43
-%define unmangled_version 1.2.1.dev43
-%define unmangled_version 1.2.1.dev43
+%define version 1.4.1.dev47
+%define unmangled_version %{version}
 %define release 1%{?dist}
 
 Summary: Manage Jenkins jobs with YAML
@@ -20,7 +19,7 @@ Url: http://ci.openstack.org/jjb.html
 Requires: PyYAML
 Requires: python-six >= 1.5.2
 Requires: python-pbr >= 0.8.2
-Requires: python-jenkins >= 0.4.1
+Requires: python-jenkins >= 0.4.8
 
 BuildRequires: python
 BuildRequires: python-setuptools
@@ -31,18 +30,6 @@ Requires: python >= 2.7
 %endif
 
 %if 0%{?fedora} == 22
-Requires: python >= 2.7
-%endif
-
-%if 0%{?fedora} == 21
-Requires: python >= 2.7
-%endif
-
-%if 0%{?fedora} == 20
-Requires: python >= 2.7
-%endif
-
-%if 0%{?fedora} == 19
 Requires: python >= 2.7
 %endif
 
@@ -57,12 +44,7 @@ Requires: python-ordereddict
 %endif
 
 Patch1: packaging.fc22.patch
-Patch2: packaging.fc21.patch
-Patch3: packaging.fc20.patch
-Patch4: packaging.fc19.patch
-Patch5: packaging.el7.patch
-Patch6: packaging.el6.patch
-Patch7: packaging.fc23.patch
+Patch2: packaging.fc23.patch
 
 %description
 README
@@ -155,25 +137,10 @@ Then install the required python packages using pip_::
 %prep
 %setup -n %{name}-%{unmangled_version} -n %{name}-%{unmangled_version}
 %if 0%{?fedora} == 23
-%patch1 -p1
+%patch2 -p1
 %endif
 %if 0%{?fedora} == 22
 %patch1 -p1
-%endif
-%if 0%{?fedora} == 21
-%patch2 -p1
-%endif
-%if 0%{?fedora} == 20
-%patch3 -p1
-%endif
-%if 0%{?fedora} == 19
-%patch4 -p1
-%endif
-%if 0%{?rhel} == 6
-%patch5 -p1
-%endif
-%if 0%{?rhel} == 7
-%patch6 -p1
 %endif
 
 
