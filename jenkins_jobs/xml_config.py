@@ -16,6 +16,7 @@
 # Manage Jenkins XML config file output.
 
 import hashlib
+import sys
 from xml.dom import minidom
 import xml.etree.ElementTree as XML
 
@@ -42,6 +43,18 @@ def remove_ignorable_whitespace(node):
         remove_ignorable_whitespace(child)
 
 
+def toprettyxml(node, encoding='utf-8'):
+    if sys.version_info[:2] < (2, 7):
+        from xml.dom.ext import PrettyPrint
+        from StringIO import StringIO
+
+        tmpStream = StringIO()
+        PrettyPrint(node, stream=tmpStream, encoding=encoding)
+        return tmpStream.getvalue()
+    else:
+        return node.toprettyxml(indent='  ', encoding=encoding)
+
+
 class XmlJob(object):
     def __init__(self, xml, name):
         self.xml = xml
@@ -52,4 +65,4 @@ class XmlJob(object):
 
     def output(self):
         out = minidom.parseString(XML.tostring(self.xml, encoding='UTF-8'))
-        return out.toprettyxml(indent='  ', encoding='utf-8')
+        return toprettyxml(out)
