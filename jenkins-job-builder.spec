@@ -1,5 +1,5 @@
 %define name jenkins-job-builder
-%define version 1.4.1.dev47
+%define version 1.4.1.dev48
 %define unmangled_version %{version}
 %define release 1%{?dist}
 
@@ -41,6 +41,7 @@ Requires: python >= 2.7
 Requires: python
 Requires: python-argparse
 Requires: python-ordereddict
+Requires: PyXML
 %endif
 
 Patch1: packaging.fc22.patch
