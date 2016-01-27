@@ -1,12 +1,12 @@
 %define name jenkins-job-builder
-%define version 1.4.1.dev48
+%define version 1.4.1.dev49
 %define unmangled_version %{version}
 %define release 1%{?dist}
 
 Summary: Manage Jenkins jobs with YAML
 Name: %{name}
 Version: %{version}
-Release: %{release}
+Release: %{release}.ovirt
 Source0: %{name}-%{unmangled_version}.tar.gz
 License: Apache License, Version 2.0
 Group: Development/Libraries
