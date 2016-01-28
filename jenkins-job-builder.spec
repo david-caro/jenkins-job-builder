@@ -1,5 +1,5 @@
 %define name jenkins-job-builder
-%define version 1.4.1.dev49
+%define version 1.4.1.dev50
 %define unmangled_version %{version}
 %define release 1%{?dist}
 
