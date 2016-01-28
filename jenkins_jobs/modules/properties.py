@@ -640,6 +640,31 @@ def rebuild(parser, xml_parent, data):
         data.get('rebuild-disabled', False)).lower()
 
 
+def build_discarder(parser, xml_parent, data):
+    """yaml: build-discarder
+
+    :arg int days-to-keep: Rebuild without asking for parameters
+        (default false)
+    :arg bool rebuild-disabled: Disable rebuilding for this job
+        (default false)
+
+    Example:
+
+    """
+    base_sub = XML.SubElement(xml_parent,
+                              'jenkins.model.BuildDiscarderProperty')
+    strategy = XML.SubElement(base_sub, 'strategy')
+    strategy.set('class', 'hudson.tasks.LogRotator')
+    days = XML.SubElement(strategy, 'daysToKeep')
+    days.text = str(data.get('days-to-keep', -1))
+    num = XML.SubElement(strategy, 'numToKeep')
+    num.text = str(data.get('num-to-keep', -1))
+    adays = XML.SubElement(strategy, 'artifactDaysToKeep')
+    adays.text = str(data.get('artifact-days-to-keep', -1))
+    anum = XML.SubElement(strategy, 'artifactNumToKeep')
+    anum.text = str(data.get('artifact-num-to-keep', -1))
+
+
 class Properties(jenkins_jobs.modules.base.Base):
     sequence = 20
 
